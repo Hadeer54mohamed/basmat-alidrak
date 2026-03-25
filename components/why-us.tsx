@@ -4,7 +4,10 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { CheckCircle2 } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
-import { random } from 'lodash';
+
+function randomInt(min: number, max: number) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 const reasons = [
   { title: 'خبرة عالية', description: 'فريق محترف بخبرات تقنية عميقة' },
@@ -90,9 +93,9 @@ export function WhyUs() {
   useEffect(() => {
     setParticles(
       Array.from({ length: 15 }, () => ({
-        size: random(4, 12),
-        x: `${random(0, 100, true)}%`,
-        y: `${random(0, 100, true)}%`,
+        size: randomInt(4, 12),
+        x: `${Math.random() * 100}%`,
+        y: `${Math.random() * 100}%`,
         delay: Math.random() * 5,
         duration: 4 + Math.random() * 2,
       })),
