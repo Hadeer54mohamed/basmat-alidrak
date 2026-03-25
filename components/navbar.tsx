@@ -6,12 +6,14 @@ import Image from 'next/image';
 import { Menu, X, Code2, Shield } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useHeroMode } from '@/components/hero-mode-context';
+import { ChevronDown } from 'lucide-react';
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [active, setActive] = useState('');
   const [showNav, setShowNav] = useState(true);
+  const [openMobileMenu, setOpenMobileMenu] = useState<string | null>(null);
 
   const lastScrollRef = useRef(0);
   const { mode, toggleMode } = useHeroMode();
@@ -20,10 +22,8 @@ export function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       const current = window.scrollY;
-      const prev = lastScrollRef.current;
-
       setIsScrolled(current > 50);
-      setShowNav(current < prev || current < 48);
+      setShowNav(current < lastScrollRef.current || current < 48);
       lastScrollRef.current = current;
     };
 
@@ -44,11 +44,7 @@ export function Navbar() {
         const el = visible[0]?.target as HTMLElement | undefined;
         if (el?.id) setActive(`#${el.id}`);
       },
-      {
-        root: null,
-        rootMargin: '-88px 0px -42% 0px',
-        threshold: [0, 0.06, 0.12, 0.2, 0.35],
-      }
+      { root: null, rootMargin: '-88px 0px -42% 0px', threshold: [0, 0.06, 0.12, 0.2, 0.35] }
     );
 
     sections.forEach((el) => observer.observe(el));
@@ -56,9 +52,37 @@ export function Navbar() {
   }, []);
 
   const navLinks = [
-    { label: 'الخدمات', href: '#services' },
-    { label: 'حلول الأمان', href: '#security' },
-    { label: 'العملية', href: '#process' },
+    {
+      label: 'خدمات الويب',
+      href: '#services',
+      subLinks: [
+        { label: 'استضافة المواقع', href: '#hosting' },
+        { label: 'استضافة الموزعين', href: '#distributor-hosting' },
+        { label: 'السيرفرات الخاصة', href: '#private-servers' },
+        { label: 'البريد الإلكتروني', href: '#email-services' },
+      ],
+    },
+    {
+      label: 'خدمات التصميم',
+      href: '#design-services',
+      subLinks: [
+        { label: 'تصميم الويب', href: '#web-design' },
+        { label: 'تصميم الألعاب', href: '#game-design' },
+        { label: 'تصميم التطبيقات', href: '#app-design' },
+        { label: 'تصميم الفيديوهات', href: '#video-design' },
+      ],
+    },
+   
+    {
+      label: 'البرمجة والتطوير',
+      href: '#development',
+      subLinks: [
+        { label: 'برمجة الألعاب', href: '#game-development' },
+        { label: 'برمجة التطبيقات', href: '#app-development' },
+        { label: 'برمجة الويب', href: '#web-development' },
+      ],
+    },
+    
     { label: 'التواصل', href: '#contact' },
   ];
 
@@ -69,8 +93,9 @@ export function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 right-0 left-0 z-50 transition-transform duration-300 ease-out ${showNav ? 'translate-y-0' : '-translate-y-full'
-        }`}
+      className={`fixed top-0 right-0 left-0 z-50 transition-transform duration-300 ease-out ${
+        showNav ? 'translate-y-0' : '-translate-y-full'
+      }`}
       style={{
         backgroundColor: navBarTint,
         backdropFilter: 'blur(16px)',
@@ -81,13 +106,6 @@ export function Navbar() {
           : '0 4px 20px rgba(0, 0, 0, 0.2)',
       }}
     >
-      <div
-        className="pointer-events-none absolute inset-0 bg-gradient-to-l from-cyan-500/5 via-transparent to-blue-500/8"
-        aria-hidden
-      />
-
-      <div className="absolute top-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-cyan-400/50 to-transparent blur-sm" />
-
       <div className="relative mx-auto max-w-7xl px-3 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between gap-2 sm:h-20 sm:gap-3">
           <Link
@@ -116,33 +134,48 @@ export function Navbar() {
               >
                 بصمة الإدراك
               </div>
-
               <div className="font-cairo truncate text-xs text-white/70 sm:text-sm md:text-base">
                 Basmat Alidrak
               </div>
             </div>
           </Link>
 
-          <div className="hidden items-center gap-6 md:flex md:flex-1 md:justify-center">
+          {/* Desktop Menu */}
+          <div className="hidden md:flex md:flex-1 md:justify-center items-center gap-6">
             {navLinks.map((link) => (
-              <div key={link.href} className="relative">
-                <Link
-                  href={link.href}
-                  className={`font-cairo text-sm font-medium transition ${active === link.href ? 'text-white' : 'text-white/70 hover:text-white'
-                    }`}
-                >
-                  {link.label}
-                </Link>
-                {active === link.href && (
-                  <motion.span
-                    layoutId="activeNav"
-                    className="absolute -bottom-2 inset-x-0 mx-auto h-0.5 w-full max-w-[100%] rounded-full bg-cyan-400 shadow-[0_0_12px_rgba(34,211,238,0.75)]"
-                  />
+              <div key={link.href} className="relative group">
+                <div className="flex items-center gap-1 cursor-pointer">
+  <Link
+    href={link.href}
+    className={`font-cairo text-sm font-medium transition ${
+      active === link.href ? 'text-white' : 'text-white/70 hover:text-white'
+    }`}
+  >
+    {link.label}
+  </Link>
+
+  {link.subLinks && (
+    <ChevronDown className="h-4 w-4 text-white/60 transition group-hover:rotate-180" />
+  )}
+</div>
+                {link.subLinks && (
+                  <div className="absolute top-full left-0 hidden group-hover:block min-w-[180px] rounded-lg bg-[rgba(6,26,64,0.95)] p-2 shadow-lg z-50">
+                    {link.subLinks.map((sub) => (
+                      <Link
+                        key={sub.href}
+                        href={sub.href}
+                        className="block px-3 py-2 text-white hover:bg-white/10 rounded"
+                      >
+                        {sub.label}
+                      </Link>
+                    ))}
+                  </div>
                 )}
               </div>
             ))}
           </div>
 
+          {/* Right buttons */}
           <div className="flex shrink-0 items-center gap-1.5 sm:gap-3">
             <button
               type="button"
@@ -151,13 +184,10 @@ export function Navbar() {
               className="flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-2.5 py-2 text-white transition hover:bg-white/10 sm:gap-2 sm:px-4"
             >
               {isTech ? (
-                <Code2 className="h-4 w-4 shrink-0 text-blue-300" aria-hidden />
+                <Code2 className="h-4 w-4 shrink-0 text-blue-300" />
               ) : (
-                <Shield className="h-4 w-4 shrink-0 text-cyan-300" aria-hidden />
+                <Shield className="h-4 w-4 shrink-0 text-cyan-300" />
               )}
-              <span className="font-cairo text-[10px] font-semibold sm:hidden">
-                {isTech ? 'منصات' : 'أمان'}
-              </span>
               <span className="font-cairo hidden text-xs font-semibold sm:inline">
                 {isTech ? 'وضع المنصات' : 'وضع الأمان'}
               </span>
@@ -195,6 +225,7 @@ export function Navbar() {
           </div>
         </div>
 
+        {/* Mobile Menu */}
         <AnimatePresence initial={false}>
           {isMobileMenuOpen && (
             <motion.div
@@ -202,23 +233,40 @@ export function Navbar() {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
+              transition={{ duration: 0.25 }}
               className="overflow-hidden md:hidden"
             >
               <div className="mt-2 mb-3 space-y-1 rounded-xl border border-white/10 bg-[rgba(6,26,64,0.94)] p-3 shadow-xl backdrop-blur-xl">
                 {navLinks.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className={`font-cairo block rounded-lg px-3 py-2.5 text-sm transition ${active === link.href
-                        ? 'bg-white/10 text-white'
-                        : 'text-white/85 hover:bg-white/5 hover:text-white'
-                      }`}
-                  >
-                    {link.label}
-                  </Link>
+                  <div key={link.href}>
+                    <div
+                      onClick={() =>
+                        link.subLinks
+                          ? setOpenMobileMenu(openMobileMenu === link.label ? null : link.label)
+                          : setIsMobileMenuOpen(false)
+                      }
+                      className="font-cairo block rounded-lg px-3 py-2.5 text-sm font-medium text-white/85 hover:bg-white/5 hover:text-white cursor-pointer"
+                    >
+                      {link.label}
+                    </div>
+
+                    {link.subLinks && openMobileMenu === link.label && (
+                      <div className="pl-4 mt-1 space-y-1">
+                        {link.subLinks.map((sub) => (
+                          <Link
+                            key={sub.href}
+                            href={sub.href}
+                            onClick={() => setIsMobileMenuOpen(false)}
+                            className="block rounded-lg px-3 py-2 text-sm text-white/80 hover:bg-white/10"
+                          >
+                            {sub.label}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 ))}
+
                 <motion.div
                   className="mt-2"
                   whileHover={{ scale: 1.02 }}

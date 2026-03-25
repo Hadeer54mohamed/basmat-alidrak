@@ -20,7 +20,6 @@ export function HomeContent() {
         <Navbar />
         <Hero />
 
-        {/* انتقال لوني بين مشهد الهيرو والأقسام الفاتحة */}
         <div
           className="pointer-events-none relative z-[5] h-24 w-full bg-gradient-to-b from-[#050a12] via-[#0f172a]/95 to-[#F4F8FB]"
           aria-hidden

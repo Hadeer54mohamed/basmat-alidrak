@@ -20,7 +20,7 @@ const TECH_BG =
 const SEC_BG =
   'https://images.unsplash.com/photo-1633265486064-086b219458ec?auto=format&fit=crop&w=1920&q=85';
 const TECH_CARD =
-  'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=82';
+  'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=900&q=82';
 const SEC_CARD =
   "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=82";
 
