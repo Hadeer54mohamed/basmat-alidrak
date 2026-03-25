@@ -278,3 +278,13 @@
 .perspective {
   perspective: 1000px;
 }
+
+/* Lenis: يمنع تعارض scroll-behavior مع التمرير الناعم */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+html.lenis {
+  overflow: hidden;
+}

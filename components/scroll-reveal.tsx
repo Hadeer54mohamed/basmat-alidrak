@@ -1,7 +1,12 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
 import type { ReactNode } from 'react';
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 type ScrollRevealProps = {
   children: ReactNode;
@@ -9,15 +14,34 @@ type ScrollRevealProps = {
 };
 
 export function ScrollReveal({ children, className = '' }: ScrollRevealProps) {
+  const rootRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      const el = rootRef.current;
+      if (!el) return;
+
+      gsap.set(el, { opacity: 0, y: 56, scale: 0.985 });
+      gsap.to(el, {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.85,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 88%',
+          toggleActions: 'play none none none',
+          once: true,
+        },
+      });
+    },
+    { scope: rootRef, dependencies: [] }
+  );
+
   return (
-    <motion.div
-      className={className}
-      initial={{ opacity: 0, y: 56, scale: 0.985 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      viewport={{ once: true, margin: '-12% 0px -8% 0px', amount: 0.25 }}
-      transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-    >
+    <div ref={rootRef} className={className}>
       {children}
-    </motion.div>
+    </div>
   );
 }

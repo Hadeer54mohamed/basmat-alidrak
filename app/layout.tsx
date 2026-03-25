@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Cairo, IBM_Plex_Sans_Arabic } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { SmoothScroll } from '@/components/smooth-scroll'
 import './globals.css'
 
 const cairo = Cairo({ 
@@ -37,7 +38,7 @@ export default function RootLayout({
   return (
     <html lang="ar" dir="rtl" className={`${cairo.variable} ${ibmPlexSansArabic.variable}`}>
       <body className="font-cairo antialiased overflow-x-hidden">
-        {children}
+        <SmoothScroll>{children}</SmoothScroll>
         <Analytics />
       </body>
     </html>

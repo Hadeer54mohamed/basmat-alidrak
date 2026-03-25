@@ -12,6 +12,7 @@ import { Process } from '@/components/process';
 import { FAQ } from '@/components/faq';
 import { CTABanner } from '@/components/cta-banner';
 import { Footer } from '@/components/footer';
+import { ScrollZoomStageZentry } from '@/components/scroll-zoom-stage-zentry';
 
 export function HomeContent() {
   return (
@@ -19,6 +20,8 @@ export function HomeContent() {
       <div className="min-h-screen bg-[#F4F8FB]">
         <Navbar />
         <Hero />
+
+        <ScrollZoomStageZentry className="relative z-[4]" />
 
         <div
           className="pointer-events-none relative z-[5] h-24 w-full bg-gradient-to-b from-[#050a12] via-[#0f172a]/95 to-[#F4F8FB]"
