@@ -63,10 +63,10 @@ export function Navbar() {
   const navLinks = [
     {
       label: 'خدمات الويب',
-      href: '#services',
+      href: '/hosting',
       icon: Globe,
       subLinks: [
-        { label: 'استضافة المواقع', href: '#hosting', icon: Server },
+        { label: 'استضافة المواقع', href: '/hosting', icon: Server },
         { label: 'استضافة الموزعين', href: '#distributor-hosting', icon: Server },
         { label: 'السيرفرات الخاصة', href: '#private-servers', icon: Server },
         { label: 'البريد الإلكتروني', href: '#email-services', icon: Mail },
