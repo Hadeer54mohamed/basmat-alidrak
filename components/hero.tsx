@@ -128,7 +128,7 @@ export function Hero() {
   const c = copy;
 
   return (
-    <section ref={heroRef} className="relative h-[100dvh] min-h-[600px] w-full overflow-hidden pt-10">
+    <section ref={heroRef} className="relative min-h-[110dvh] md:min-h-[100dvh] w-full overflow-hidden ">
       <h1 id="hero-page-title" className="sr-only">
         بصمة الإدراك — حلول رقمية وأمن سيبراني متكامل
       </h1>
@@ -148,19 +148,19 @@ export function Hero() {
       />
       <motion.div className="absolute inset-0 z-0" style={{ scale: bgScale, y: heroY }}>
         <div className="absolute inset-0">
-          <video
-            className="absolute inset-0 h-full w-full object-cover"
-            autoPlay
-            muted
-            loop
-            playsInline
-            aria-hidden
-            ref={(el) => {
-              if (el) el.playbackRate = 0.3; // خليناه ابطاء
-            }}
-          >
-            <source src="/scroll.mp4" type="video/mp4" />
-          </video>
+        <video
+  className="absolute inset-0 h-full w-full object-cover"
+  autoPlay
+  muted
+  loop
+  playsInline
+  aria-hidden
+  ref={(el) => {
+    if (el) el.playbackRate = 0.3; // خليناه ابطاء
+  }}
+>
+  <source src="/scroll.mp4" type="video/mp4" />
+</video>
           <div
             className="absolute inset-0 bg-gradient-to-br from-[#0a1628]/85 via-[#0b5ed7]/35 to-[#19d3ff]/25"
             aria-hidden
@@ -177,11 +177,11 @@ export function Hero() {
       {!lowEndDevice && <HudRings />}
 
       <motion.div
-        className="relative z-[20] flex h-full flex-col justify-center px-4 pb-28 pt-24 sm:px-8 lg:px-12"
+        className="relative z-[20] flex h-full flex-col justify-center px-4 pb-12 pt-12 sm:px-8 lg:px-12"
         style={{ opacity: contentOpacity }}
       >
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-10 lg:flex-row lg:items-center lg:justify-between">
-          <div className="max-w-3xl">
+          <div className="max-w-3xl pt-20 sm:pt-0">
             <motion.div
               initial={{ opacity: 0, y: 36, scale: 0.97 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -271,7 +271,7 @@ export function Hero() {
           </div>
 
           <motion.div
-            className="relative mx-auto w-full max-w-md sm:max-w-lg lg:mx-0 mt-30"
+            className="relative mx-auto w-full max-w-md sm:max-w-lg lg:mx-0 mt-0 sm:mt-30 "
             style={{ y: floatParallax }}
           >
             <motion.div
