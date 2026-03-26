@@ -130,7 +130,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    background-color: #F4F8FB;
+    background-color: #3b77a5;
     color: #061A40;
   }
   
@@ -279,7 +279,6 @@
   perspective: 1000px;
 }
 
-/* Lenis: يمنع تعارض scroll-behavior مع التمرير الناعم */
 html.lenis,
 html.lenis body {
   height: auto;

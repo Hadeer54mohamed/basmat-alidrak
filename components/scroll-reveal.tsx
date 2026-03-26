@@ -21,11 +21,10 @@ export function ScrollReveal({ children, className = '' }: ScrollRevealProps) {
       const el = rootRef.current;
       if (!el) return;
 
-      gsap.set(el, { opacity: 0, y: 56, scale: 0.985 });
+      gsap.set(el, { opacity: 0, y: 40 });
       gsap.to(el, {
         opacity: 1,
         y: 0,
-        scale: 1,
         duration: 0.85,
         ease: 'power2.out',
         scrollTrigger: {

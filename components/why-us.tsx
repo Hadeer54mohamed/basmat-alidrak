@@ -27,7 +27,7 @@ type ParticleConfig = {
 function Particle({ size, x, y, delay, duration }: ParticleConfig) {
   return (
     <motion.div
-      className="absolute rounded-full bg-cyan-400/20"
+      className="absolute rounded-full bg-[#56CCF2]/20"
       style={{
         width: `${size}px`,
         height: `${size}px`,
@@ -50,7 +50,7 @@ function LightStreak() {
       transition={{ repeat: Infinity, duration: 4, ease: 'linear' }}
       style={{
         background:
-          'linear-gradient(120deg, rgba(25,211,255,0.15) 0%, rgba(25,211,255,0) 50%, rgba(25,211,255,0.15) 100%)',
+          'linear-gradient(120deg, rgba(86,204,242,0.2) 0%, rgba(86,204,242,0) 50%, rgba(86,204,242,0.2) 100%)',
       }}
     />
   );
@@ -81,8 +81,8 @@ function Counter({ value, label }: { value: number; label: string }) {
 
   return (
     <div ref={ref} className="text-center">
-      <div className="font-cairo text-4xl font-bold mb-2 text-[#0B5ED7]">{displayValue}+</div>
-      <p className="font-cairo text-sm text-[#9FB3C8]">{label}</p>
+      <div className="font-cairo text-3xl font-bold mb-2 text-[#4FACFE] sm:text-4xl">{displayValue}+</div>
+      <p className="font-cairo text-sm text-[#C7D2FE]">{label}</p>
     </div>
   );
 }
@@ -103,7 +103,7 @@ export function WhyUs() {
   }, []);
 
   return (
-    <section className="relative py-24 md:py-32 px-4 sm:px-6 lg:px-8 bg-[#0A1023] overflow-hidden">
+    <section className="relative py-24 md:py-32 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-br from-[#0B1E3A] via-[#0F2A4D] to-[#0B1E3A]">
       {particles.map((p, i) => (
         <Particle key={i} {...p} />
       ))}
@@ -113,12 +113,12 @@ export function WhyUs() {
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
 
       <motion.div
-        className="absolute top-1/4 left-0 w-2 h-32 bg-cyan-400/30 rounded-full blur-xl"
+        className="absolute top-1/4 left-0 w-2 h-32 bg-[#56CCF2]/30 rounded-full blur-xl"
         animate={{ x: ['-50%', '150%'] }}
         transition={{ repeat: Infinity, duration: 6, ease: 'linear' }}
       />
       <motion.div
-        className="absolute bottom-1/3 right-0 w-1 h-24 bg-blue-400/20 rounded-full blur-lg"
+        className="absolute bottom-1/3 right-0 w-1 h-24 bg-[#2F80ED]/20 rounded-full blur-lg"
         animate={{ x: ['50%', '-150%'] }}
         transition={{ repeat: Infinity, duration: 8, ease: 'linear' }}
       />
@@ -144,18 +144,19 @@ export function WhyUs() {
               e.currentTarget.style.transform = 'translateZ(30px) rotateX(0deg) rotateY(0deg)';
             }}
           >
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0B1E3A]/60 via-transparent to-transparent z-10" />
             <Image src="/why-us-team.jpg" alt="فريقنا" fill className="object-cover" />
             <LightStreak />
           </motion.div>
         </motion.div>
 
         <div>
-          <h2 className="font-cairo text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-white relative overflow-hidden">
+          <h2 className="font-cairo text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-[#EAF4FF]">
             لماذا تختار <br />
-            <span className="relative text-[#19D3FF]">
+            <span className="relative text-[#56CCF2]">
               بصمة الإدراك
               <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-cyan-300/50 via-blue-400/40 to-cyan-300/50 blur-xl"
+                className="absolute inset-0 bg-gradient-to-r from-[#56CCF2]/50 via-[#2F80ED]/40 to-[#56CCF2]/50 blur-xl"
                 style={{ zIndex: -1 }}
                 animate={{ x: ['-100%', '100%'] }}
                 transition={{ repeat: Infinity, duration: 3, ease: 'linear' }}
@@ -163,7 +164,7 @@ export function WhyUs() {
             </span>
           </h2>
 
-          <p className="font-cairo text-lg mb-8 leading-relaxed text-[#9FB3C8]">
+          <p className="font-cairo text-sm mb-8 leading-relaxed text-[#C7D2FE] sm:text-base">
             نحن نقدم حلولاً تقنية متكاملة مع فريق محترف مكرس لنجاح عملك
           </p>
 
@@ -171,19 +172,19 @@ export function WhyUs() {
             {reasons.map((reason, index) => (
               <motion.div
                 key={index}
-                className="flex gap-3 p-3 rounded-xl cursor-pointer transition-all hover:bg-cyan-400/10"
+                className="flex gap-3 p-3 rounded-xl cursor-pointer transition-all hover:bg-[#56CCF2]/10"
                 whileHover={{ scale: 1.05 }}
               >
-                <CheckCircle2 size={24} className="text-[#19D3FF] flex-shrink-0" />
+                <CheckCircle2 size={24} className="text-[#56CCF2] flex-shrink-0" />
                 <div>
-                  <h3 className="font-cairo font-bold text-white">{reason.title}</h3>
-                  <p className="font-cairo text-xs mt-1 text-[#9FB3C8]">{reason.description}</p>
+                  <h3 className="font-cairo text-sm font-bold text-[#EAF4FF] sm:text-base">{reason.title}</h3>
+                  <p className="font-cairo text-xs mt-1 text-[#C7D2FE]">{reason.description}</p>
                 </div>
               </motion.div>
             ))}
           </div>
 
-          <div className="grid grid-cols-3 gap-6 pt-8 border-t" style={{ borderColor: 'rgba(11, 94, 215, 0.2)' }}>
+          <div className="grid grid-cols-3 gap-6 pt-8 border-t" style={{ borderColor: 'rgba(79,172,254,0.2)' }}>
             <Counter value={50} label="مشروع منجز" />
             <Counter value={30} label="عميل راضي" />
             <Counter value={5} label="سنوات خبرة" />

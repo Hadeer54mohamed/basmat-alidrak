@@ -31,19 +31,22 @@ export function CinematicSection({
   const yDecor = useTransform(smooth, [0, 1], ['8%', '-8%']);
   const yContent = useTransform(smooth, [0, 1], ['4%', '-4%']);
   const sectionOpacity = useTransform(smooth, [0, 0.15, 0.85, 1], [0.92, 1, 1, 0.94]);
-  const sectionScale = useTransform(smooth, [0, 0.2, 0.8, 1], [0.985, 1, 1, 0.992]);
 
   const wipeFrom =
     variant === 'light'
       ? 'from-[#F4F8FB] via-[#F4F8FB]/70'
       : 'from-[#0A1023] via-[#0A1023]/70';
 
+      const surfaceBg =
+      variant === 'light'
+        ? 'bg-[#F4F8FB]'
+        : 'bg-gradient-to-br from-[#0B1E3A] via-[#0F2A4D] to-[#0B1E3A] relative before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_70%_30%,rgba(86,204,242,0.08),transparent_60%)] before:pointer-events-none';
   return (
     <motion.section
       ref={ref}
       id={id}
-      style={{ opacity: sectionOpacity, scale: sectionScale, ...style }}
-      className={`relative overflow-hidden ${className}`}
+      style={{ opacity: sectionOpacity, ...style }}
+      className={`relative overflow-hidden ${surfaceBg} ${className}`}
     >
       {showTopWipe && (
         <div
