@@ -116,12 +116,12 @@ function FAQItem({ item, index }: { item: (typeof faqItems)[0]; index: number })
           ))}
         </motion.div>
 
-        <div className="relative z-10 flex items-center justify-between p-6" style={{ transform: 'translateZ(14px)' }}>
-          <h3 className="font-cairo text-lg font-bold text-[#061A40] transition-colors duration-300 group-hover:text-[#0B5ED7] sm:text-xl">
+        <div className="relative z-10 flex items-center justify-between p-4 sm:p-5" style={{ transform: 'translateZ(14px)' }}>
+          <h3 className="font-cairo text-base font-bold text-[#061A40] transition-colors duration-300 group-hover:text-[#0B5ED7] sm:text-lg">
             {item.question}
           </h3>
           <motion.div animate={{ rotate: isOpen ? 180 : 0 }} transition={{ duration: 0.3 }}>
-            <ChevronDown size={22} className="text-cyan-500 transition group-hover:text-[#0B5ED7]" />
+            <ChevronDown size={20} className="text-cyan-500 transition group-hover:text-[#0B5ED7]" />
           </motion.div>
         </div>
 
@@ -133,7 +133,7 @@ function FAQItem({ item, index }: { item: (typeof faqItems)[0]; index: number })
               animate={{ opacity: 1, clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' }}
               exit={{ opacity: 0, clipPath: 'polygon(0 0, 100% 0, 100% 0, 0 0)' }}
               transition={{ duration: 0.6, ease: 'easeInOut' }}
-              className="relative overflow-hidden border-t border-[#0B5ED7]/18 bg-[#F5FAFC]/90 px-6 pb-6 font-cairo text-sm leading-relaxed text-[#3D5266] sm:text-base"
+              className="relative overflow-hidden border-t border-[#0B5ED7]/18 bg-[#F5FAFC]/90 px-4 pb-4 pt-3 font-cairo text-xs leading-relaxed text-[#3D5266] sm:px-5 sm:pb-5 sm:text-sm"
               style={{ transform: 'translateZ(10px)' }}
             >
               <motion.div
@@ -159,27 +159,27 @@ function FAQContactCard() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className="perspective mt-16 w-full"
+      className="perspective mt-8 w-full"
     >
       <motion.div
         onMouseMove={handleMove}
         onMouseLeave={reset}
         style={{ rotateX, rotateY, transformStyle, boxShadow: cardGlow }}
-        className="group relative overflow-hidden rounded-2xl border border-[rgba(11,94,215,0.14)] bg-white/75 p-10 text-center shadow-[0_4px_24px_rgba(6,26,64,0.06)] backdrop-blur-md transition-all duration-300 will-change-transform hover:border-cyan-400/35 hover:shadow-[0_8px_40px_rgba(25,211,255,0.12)]"
+        className="group relative overflow-hidden rounded-2xl border border-[rgba(11,94,215,0.14)] bg-white/75 p-6 text-center shadow-[0_4px_24px_rgba(6,26,64,0.06)] backdrop-blur-md transition-all duration-300 will-change-transform hover:border-cyan-400/35 hover:shadow-[0_8px_40px_rgba(25,211,255,0.12)] sm:p-8"
       >
         {nanoCardLayers}
         {nanoHoverOverlays}
 
-        <div className="relative z-10 flex flex-col items-center gap-4" style={{ transform: 'translateZ(16px)' }}>
-          <h3 className="font-cairo text-2xl font-extrabold text-[#061A40] transition-colors duration-300 group-hover:text-[#0B5ED7]">
+        <div className="relative z-10 flex flex-col items-center gap-3" style={{ transform: 'translateZ(16px)' }}>
+          <h3 className="font-cairo text-xl font-extrabold text-[#061A40] transition-colors duration-300 group-hover:text-[#0B5ED7]">
             لم تجد الإجابة التي تبحث عنها؟
           </h3>
-          <p className="text-center text-lg text-[#677482] transition-colors duration-300 group-hover:text-[#061A40]/80">
+          <p className="text-center text-base text-[#677482] transition-colors duration-300 group-hover:text-[#061A40]/80">
             تواصل معنا مباشرة وسيجيب فريقنا على جميع أسئلتك
           </p>
           <a
             href="#contact"
-            className="inline-flex rounded-lg bg-gradient-to-r from-[#0B5ED7] to-cyan-500 px-10 py-3 font-cairo font-semibold text-white shadow-[0_0_24px_rgba(25,211,255,0.2)] transition hover:shadow-[0_0_32px_rgba(25,211,255,0.35)]"
+            className="inline-flex rounded-lg bg-gradient-to-r from-[#0B5ED7] to-cyan-500 px-8 py-2.5 font-cairo text-sm font-semibold text-white shadow-[0_0_24px_rgba(25,211,255,0.2)] transition hover:shadow-[0_0_32px_rgba(25,211,255,0.35)]"
           >
             تواصل معنا
           </a>
@@ -191,7 +191,7 @@ function FAQContactCard() {
 
 export function FAQ() {
   return (
-    <section className="relative overflow-hidden bg-[#F4F8FB] px-4 py-8 sm:px-6 md:py-12 lg:px-8">
+    <section className="relative overflow-hidden bg-[#F4F8FB] px-4 py-5 sm:px-6 md:py-8 lg:px-8">
       <div
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_65%_50%_at_50%_0%,rgba(11,94,215,0.09),transparent_55%)]"
         aria-hidden
@@ -222,17 +222,17 @@ export function FAQ() {
         />
       ))}
 
-      <div className="relative z-10 mx-auto flex max-w-5xl flex-wrap justify-between gap-y-6">
-        <div className="mb-12 w-full text-center">
-          <p className="font-cairo mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-[#0B5ED7]/80">
+      <div className="relative z-10 mx-auto flex max-w-5xl flex-wrap justify-between gap-y-4">
+        <div className="mb-6 w-full text-center">
+          <p className="font-cairo mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#0B5ED7]/80">
             مركز المساعدة
           </p>
-          <h2 className="font-cairo mb-4 text-3xl font-bold text-[#061A40] sm:text-4xl md:text-5xl">
+          <h2 className="font-cairo mb-2 text-2xl font-bold text-[#061A40] sm:text-3xl md:text-4xl">
             <span className="bg-gradient-to-r from-[#0B5ED7] via-cyan-600 to-[#19D3FF] bg-clip-text text-transparent">
               الأسئلة الشائعة
             </span>
           </h2>
-          <p className="font-cairo mx-auto max-w-3xl text-lg text-[#677482] sm:text-xl">
+          <p className="font-cairo mx-auto max-w-3xl text-base text-[#677482] sm:text-lg">
             إجابات لأكثر الأسئلة التي يطرحها عملاؤنا بطريقة تفاعلية وعصرية
           </p>
         </div>

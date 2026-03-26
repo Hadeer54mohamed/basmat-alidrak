@@ -209,8 +209,8 @@ export function Footer() {
 
         <div className={`border-t ${COLORS.separator} pt-6 sm:pt-8`}>
           <div className="flex flex-col items-center gap-2 text-center ">
-            <p className="font-cairo text-lg text-[#C7D2FE]/45">© {COPYRIGHT.year} {COPYRIGHT.brand}. جميع الحقوق محفوظة</p>
-            <p className="font-cairo text-lg font-bold text-[#C7D2FE]/35">
+            <p className="font-cairo text-sm text-[#C7D2FE]/45">© {COPYRIGHT.year} {COPYRIGHT.brand}. جميع الحقوق محفوظة</p>
+            <p className="font-cairo text-lg font-base text-[#C7D2FE]/35">
               Designed & Developed by{' '}
               <a
                 href={CREDIT.url}
